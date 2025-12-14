@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fotografer</title>
+  <title>Detail | Find Happiness</title>
   <link rel="stylesheet" href="../css/style1.css">
 </head>
 <body>
@@ -28,27 +28,33 @@
     <div class="nav-right">
       <div class="dropdown">
         <a href="#" class="profile-toggle">
-          <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="User Icon" class="user-icon">
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png"
+               alt="User Icon" class="user-icon">
         </a>
         <div class="dropdown-content">
           <a href="Login.html" class="dropdown-item">
-            <img src="https://img.icons8.com/ios-glyphs/20/000000/exit.png" alt="Logout Icon"> Log Out
+            <img src="https://img.icons8.com/ios-glyphs/20/000000/exit.png">
+            Log Out
           </a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- SECTION: akan diisi dinamis dari database -->
-  <section class="portfolio-section" id="portfolio-section">
-    <!-- Card kota + fotografer akan dibuat otomatis oleh JS -->
-  </section>
+  <!-- DETAIL CONTENT -->
+  <main class="catalog-section">
+    <h1>Book Photographer</h1>
+
+    <div class="catalog-kartu" id="detail-root">
+      <p style="text-align:center;">Loading...</p>
+    </div>
+  </main>
 
   <footer>
-    <p>© 2025 FindHappiness. All rights reserved.</p>
+    <p>© 2025 FindHappiness | All rights reserved</p>
   </footer>
 
   <script src="../JS/dropdown.js"></script>
-  <script src="../JS/fotografer.js"></script>
+  <script src="../JS/detail.js"></script>
 </body>
 </html>
