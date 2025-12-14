@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Bookings</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <img src="../img/logo.png" alt="Logo" class="logo-icon">
+          </div>
+          <span class="logo-text">Find Happiness</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="admin.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <a href="admin_booking.html" class="nav-item active"><i class="fas fa-calendar"></i><span>Booking</span></a>
+        <a href="admin_potography.html" class="nav-item"><i class="fas fa-camera"></i><span>Photography</span></a>
+        <a href="admin_reports.html" class="nav-item"><i class="fas fa-file-alt"></i><span>Reports</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="header">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Search bookings, clients, photographers...">
+        </div>
+
+        <div class="header-actions">
+          <div class="user-profile">
+            <div class="user-avatar">A</div>
+            <div class="user-info">
+              <h4>Loading...</h4>
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="page-title">
+            <h2>All Bookings</h2>
+            <p>Manage all photography session bookings</p>
+          </div>
+        </div>
+
+        <!-- Mini Stats (SUDAH DIBERI TEMPAT ANGKA) -->
+        <div class="mini-stats">
+          <div class="mini-stat-card">
+            <h4>Booking Hari Ini</h4>
+            <div class="mini-stat-value" id="stat-today">0</div>
+          </div>
+
+          <div class="mini-stat-card">
+            <h4>Menunggu Persetujuan</h4>
+            <div class="mini-stat-value" id="stat-pending">0</div>
+          </div>
+
+          <div class="mini-stat-card">
+            <h4>Minggu Ini</h4>
+            <div class="mini-stat-value" id="stat-week">0</div>
+          </div>
+
+          <div class="mini-stat-card">
+            <h4>Sesi yang Akan Datang</h4>
+            <div class="mini-stat-value" id="stat-upcoming">0</div>
+          </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+          <div class="filter-tabs">
+            <button class="filter-tab active" onclick="filterStatus('all')">All Bookings</button>
+          </div>
+
+          <!-- Table Section -->
+          <div class="table-section">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Booking Code</th>
+                    <th>Client</th>
+                    <th>Photographer</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="bookingsTable">
+                  <tr><td colspan="9" style="text-align:center">Loading...</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+              <div class="pagination-info">Showing 1 to 2 of 2 bookings</div>
+              <div class="pagination-buttons">
+                <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script utama kamu -->
+  <script src="../JS/adminBooking.js"></script>
+
+  <!-- Script untuk ambil mini stats dari DB -->
+  <script>
+    // Pastikan file ini ada: /FindHappiness/api/dashboard_stats.php
+    fetch('/FindHappiness/api/dashboard_stats.php')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('stat-today').textContent = data.today ?? 0;
+        document.getElementById('stat-pending').textContent = data.pending ?? 0;
+        document.getElementById('stat-week').textContent = data.thisWeek ?? 0;
+        document.getElementById('stat-upcoming').textContent = data.upcoming ?? 0;
+      })
+      .catch(err => {
+        console.error('Gagal ambil dashboard stats:', err);
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pesanan - Dashboard Fotografer</title>
+    <link rel="stylesheet" href="../css/style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo" class="logo">
+                <h1>Dashboard <span style="color: #6a0dad;">Fotografer</span></h1>
+            </div>
+        </div>
+<div class="nav-right">
+      <div class="dropdown">
+        <a href="#" class="profile-toggle">
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="User Icon" class="user-icon">
+        </a>
+        <div class="dropdown-content">
+          <a href="Login.html" class="dropdown-item">
+            <img src="https://img.icons8.com/ios-glyphs/20/000000/exit.png" alt="Logout Icon"> Log Out
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+    
+    <section class="history-section">
+        <h1>Riwayat Pesanan Customer</h1>
+        <p class="subtitle-history">Kelola sesi pemotretan: Konfirmasi, Tolak, dan Selesaikan Pesanan.</p>
+
+        <div class="history-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>BOOKING ID</th> 
+                        <th>CUSTOMER</th> 
+                        <th>TANGGAL SESI</th>
+                        <th>STATUS</th>
+                        <th>AKSI</th>
+                    </tr>
+                </thead>
+                <tbody id="fotografer-history-body">
+                    
+                    <tr 
+                        id="booking-FH10001"
+                        data-customer="Ani Permata" 
+                        data-date="2025-12-05" 
+                        data-time="10:00 - 14:00" 
+                        data-price="Rp 500.000" 
+                        data-location="Taman Kota"
+                        data-status="new"
+                    >
+                        <td class="booking-id">#FH10001</td>
+                        <td>Ani Permata</td> 
+                        <td>2025-12-05</td>
+                        <td><span class="status-badge pending">Pesanan Baru</span></td>
+                        <td>
+                            <button class="complete-btn" style="background-color: #059669;" onclick="confirmBooking('#FH10001', 'accepted')">
+                                <i class="fas fa-check"></i> Terima
+                            </button>
+                            <button class="complete-btn" style="background-color: #dc2626; margin-right: 8px;" onclick="confirmBooking('#FH10001', 'rejected')">
+                                <i class="fas fa-times"></i> Tolak
+                            </button>
+                            <button class="detail-btn" onclick="openDetailModal('#FH10001')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                        </td>
+                    </tr>
+                    
+                    <tr 
+                        id="booking-FH10002"
+                        data-customer="Bambang Wijaya" 
+                        data-date="2025-12-10" 
+                        data-time="08:00 - 12:00" 
+                        data-price="Rp 800.000" 
+                        data-location="Studio Cempaka"
+                        data-status="accepted"
+                    >
+                        <td class="booking-id">#FH10002</td>
+                        <td>Bambang Wijaya</td> 
+                        <td>2025-12-10</td>
+                        <td><span class="status-badge confirmed">Menunggu Pembayaran</span></td>
+                        <td>
+                            <button class="complete-btn" disabled style="background-color: #9ca3af; cursor: not-allowed; margin-right: 8px;">
+                                <i class="fas fa-hourglass-half"></i> Menunggu Bayar
+                            </button>
+                            <button class="detail-btn" onclick="openDetailModal('#FH10002')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                        </td>
+                    </tr>
+                    
+                    <tr 
+                        id="booking-FH10003"
+                        data-customer="Cintya Bella" 
+                        data-date="2025-12-15" 
+                        data-time="14:00 - 18:00" 
+                        data-price="Rp 650.000" 
+                        data-location="Outdoor Pantai"
+                        data-status="paid"
+                    >
+                        <td class="booking-id">#FH10003</td>
+                        <td>Cintya Bella</td> 
+                        <td>2025-12-15</td>
+                        <td><span class="status-badge completed">Dibayar (Siap Sesi)</span></td>
+                        <td>
+                            <button class="complete-btn" onclick="completeSession('#FH10003')">
+                                <i class="fas fa-check-circle"></i> Selesaikan Sesi
+                            </button>
+                            <button class="detail-btn" onclick="openDetailModal('#FH10003')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr 
+                        id="booking-FH10004"
+                        data-customer="Dina Anggraini" 
+                        data-date="2025-12-18" 
+                        data-time="09:00 - 11:00" 
+                        data-price="Rp 400.000" 
+                        data-location="Cafe Senja"
+                        data-status="completed"
+                    >
+                        <td class="booking-id">#FH10004</td>
+                        <td>Dina Anggraini</td> 
+                        <td>2025-12-18</td>
+                        <td><span class="status-badge confirmed" style="background-color: #e6e6e6; color: #555;">Selesai (Menunggu Rating)</span></td>
+                        <td>
+                            <button class="complete-btn" disabled style="background-color: #ccc; cursor: not-allowed; margin-right: 8px;">
+                                <i class="fas fa-check-double"></i> Selesai
+                            </button>
+                            <button class="detail-btn" onclick="openDetailModal('#FH10004')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeDetailModal()">&times;</span>
+            
+            <h3>Detail Pesanan <span id="detailBookingId" style="color: #4b0082; font-weight: bold;">#FHXXXXX</span></h3>
+            
+            <ul id="detailList">
+                <li>Customer: <span id="detailCustomer"></span></li>
+                <li>Tanggal Sesi: <span id="detailDate"></span></li>
+                <li>Waktu Sesi: <span id="detailTime"></span></li>
+                <li>Lokasi: <span id="detailLocation"></span></li>
+                <li style="font-weight: bold; color: #6A0DAD;">Harga Total: <span id="detailPrice"></span></li>
+            </ul>
+
+            <button class="submit-rating-btn" onclick="closeDetailModal()">Tutup</button>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2025 Find Hapiness. All Rights Reserved.</p>
+    </footer>
+
+<script src="../JS/fotograferhistory.js"></script> 
+<script src="../JS/dropdown.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Reports & Analytics</title>
+
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <img src="../img/logo.png" alt="Logo" class="logo-icon">
+        </div>
+        <span class="logo-text">Find Happiness</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="admin.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+      <a href="admin_booking.html" class="nav-item"><i class="fas fa-calendar"></i><span>Booking</span></a>
+      <a href="admin_potography.html" class="nav-item"><i class="fas fa-camera"></i><span>Photography</span></a>
+      <a href="admin_reports.html" class="nav-item active"><i class="fas fa-file-alt"></i><span>Reports</span></a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <header class="header">
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search reports...">
+      </div>
+
+      <div class="header-actions">
+        <div class="user-profile">
+          <div class="user-avatar">A</div>
+          <div class="user-info">
+            <h4>Loading...</h4>
+            <p>Loading...</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <div class="page-header">
+        <div class="page-title">
+          <h2>Business Reports & Analytics</h2>
+          <p>Track your business performance and insights</p>
+        </div>
+
+        <div class="header-actions-group">
+          <select class="date-range-select">
+            <option>This Month</option>
+            <option>Last 30 Days</option>
+            <option>Last 3 Months</option>
+            <option>Last 6 Months</option>
+            <option>This Year</option>
+          </select>
+
+          <button class="export-btn"><i class="fas fa-download"></i> Export PDF</button>
+          <button class="export-btn"><i class="fas fa-file-excel"></i> Export Excel</button>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <h3><i class="fas fa-chart-line"></i> Overview</h3>
+      </div>
+
+      <div class="overview-grid">
+        <!-- Financial Overview -->
+        <div class="overview-card">
+          <div class="card-header"><h4>Financial Overview</h4></div>
+          <div class="card-stats">
+            <div class="stat-item">
+              <div class="stat-icon purple"><i class="fas fa-dollar-sign"></i></div>
+              <div class="stat-content">
+                <p class="stat-label">Total Revenue</p>
+                <h3 class="stat-value" id="rep-total-revenue">-</h3>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon green"><i class="fas fa-chart-line"></i></div>
+              <div class="stat-content">
+                <p class="stat-label">Avg Booking Value</p>
+                <h3 class="stat-value" id="rep-avg-booking">-</h3>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+              <div class="stat-content">
+                <p class="stat-label">Pending Payments</p>
+                <h3 class="stat-value" id="rep-pending-payments">-</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Overview -->
+        <div class="overview-card">
+          <div class="card-header"><h4>Booking Overview</h4></div>
+          <div class="card-stats">
+            <div class="stat-item">
+              <div class="stat-icon blue"><i class="fas fa-calendar-check"></i></div>
+              <div class="stat-content">
+                <p class="stat-label">Total Bookings</p>
+                <h3 class="stat-value" id="rep-total-bookings">-</h3>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+              <div class="stat-content">
+                <p class="stat-label">Completed</p>
+                <h3 class="stat-value" id="rep-completed">-</h3>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon red"><i class="fas fa-times-circle"></i></div>
+              <div class="stat-content">
+                <p class="stat-label">Cancelled</p>
+                <h3 class="stat-value" id="rep-cancelled">-</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="overview-card">
+          <div class="card-header"><h4>Performance Metrics</h4></div>
+          <div class="card-stats">
+            <div class="stat-item">
+              <div class="stat-icon yellow"><i class="fas fa-star"></i></div>
+              <div class="stat-content">
+                <p class="stat-label">Average Rating</p>
+                <h3 class="stat-value" id="rep-avg-rating">-</h3>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon purple"><i class="fas fa-user-plus"></i></div>
+              <div class="stat-content">
+                <p class="stat-label">New Clients</p>
+                <h3 class="stat-value" id="rep-new-clients">-</h3>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon blue"><i class="fas fa-redo"></i></div>
+              <div class="stat-content">
+                <p class="stat-label">Repeat Clients</p>
+                <h3 class="stat-value" id="rep-repeat-clients">-</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../JS/adminReports.js"></script>
+</body>
+</html>

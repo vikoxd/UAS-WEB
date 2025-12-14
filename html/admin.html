@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Find Happiness</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <img src="../img/logo.png" alt="Logo" class="logo-icon">
+                </div>
+                <span class="logo-text">Find Happiness</span>
+            </div>
+        </div>
+
+    <nav class="sidebar-nav">
+        <a href="admin.html" class="nav-item active"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <a href="admin_booking.html" class="nav-item"><i class="fas fa-calendar"></i><span>Booking</span></a>
+        <a href="admin_potography.html" class="nav-item"><i class="fas fa-camera"></i><span>Photography</span></a>
+        <a href="admin_reports.html" class="nav-item"><i class="fas fa-file-alt"></i><span>Reports</span></a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+        </button>
+    </div>
+</aside>
+
+<!-- Main Content -->
+<div class="main-content">
+    <header class="header">
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search bookings, clients, photographers...">
+        </div>
+
+        <div class="header-actions">
+
+            <div class="user-profile">
+                <div class="user-avatar">A</div>
+                <div class="user-info">
+                    <h4>Loading...</h4>
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-area">
+        <div class="page-title">
+            <h2>Dashboard Overview</h2>
+            <p>Welcome back! Here's what's happening with your photography business.</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header"><div class="stat-icon purple"><i class="fas fa-calendar"></i></div></div>
+                <div class="stat-info"><h3>Total Bookings</h3></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header"><div class="stat-icon blue"><i class="fas fa-camera"></i></div></div>
+                <div class="stat-info"><h3>Active Photographers</h3></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header"><div class="stat-icon pink"><i class="fas fa-users"></i></div></div>
+                <div class="stat-info"><h3>Total Clients</h3></div>
+            </div>
+        </div>
+
+        <!-- Recent Bookings Table -->
+        <div class="table-section">
+            <div class="table-header">
+                <div class="table-title">
+                    <h3>Recent Bookings</h3>
+                    <p>Latest photography session bookings</p>
+                </div>
+                <!-- <button class="view-all-btn"><i class="fas fa-clock"></i> View All</button> -->
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Booking Code</th>
+                            <th>Client</th>
+                            <th>Photographer</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable">
+                        <tr><td colspan="10" style="text-align:center">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+```
+
+</div>
+
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

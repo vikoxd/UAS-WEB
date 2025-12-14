@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | FindHappiness</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="left-box">
+      <h2>Already have an account?</h2>
+      <p>Please log in again to access our services.</p>
+      <a href="Login.html"><button type="button">LOGIN</button></a>
+    </div>
+
+    <div class="right-box">
+      <form action="../php/signup.php" method="POST" autocomplete="off">
+
+        <h2>SIGN UP</h2>
+
+        <input type="text" name="fullName" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email address" required>
+        <input type="password" name="password" placeholder="Password" minlength="6" required>
+
+        <!-- Role default semua akun baru adalah User -->
+        <input type="hidden" name="role" value="Pengguna">
+
+        <button type="submit">CREATE ACCOUNT</button>
+
+        <p>Already have an account? <a href="Login.html">Login</a></p>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

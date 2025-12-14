@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #4b0082;
+  background-color: #fff;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px 60px;
+  border-bottom: 1px solid #eaeaea;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.nav-left h1 {
+  font-size: 18px;
+  color: #222;
+  font-weight: 600;
+}
+
+.nav-left span {
+  color: #6a0dad;
+}
+
+.nav-center ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-center ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-center ul li a:hover,
+.nav-center ul li a.active {
+  color: #6a0dad;
+}
+
+.nav-right .user-icon {
+  width: 30px;
+  cursor: pointer;
+}
+
+/* ===== FORM REGISTRATION ===== */
+section.registration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 90px); /* tinggi layar dikurangi navbar */
+  background-color: #fff;
+}
+
+.form-container {
+  width: 400px;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #4b0082;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #000;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #6a0dad;
+  box-shadow: 0 0 4px rgba(106, 13, 173, 0.3);
+}
+
+
+button {
+  display: block;
+  width: 120px;
+  padding: 12px;
+  background-color: #4b0082;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 30px auto 0 auto;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #6a0dad;
+}
+
+
+.btn-daftar {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #6a0dad;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-daftar:hover {
+  background-color: #6a0dad;
+}
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- =======================
+       META & ASSET
+  ======================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FindHappiness - Portofolio</title>
+
+  <!-- CSS utama (hasil rapihin) -->
+  <link rel="stylesheet" href="../css/porto.css" />
+</head>
+
+<body>
+  <!-- =======================
+       NAVBAR
+       (di file lama: header.navbar + nav-center ul) :contentReference[oaicite:4]{index=4}
+  ======================== -->
+  <header class="navbar">
+    <div class="navbar__left">
+      <img src="../img/logo.png" alt="FindHappiness Logo" class="navbar__logo" />
+      <h1 class="navbar__brand">Find <span>Hapiness</span></h1>
+    </div>
+
+    <nav class="navbar__center" aria-label="Main navigation">
+      <ul class="navbar__menu">
+        <li><a href="Homepage.html">Home</a></li>
+        <li><a class="is-active" href="portofolio.html">Portofolio</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+        <li><a href="joinus.html">Join Us</a></li>
+        <li><a href="custhistory.html">History</a></li>
+      </ul>
+    </nav>
+
+    <div class="navbar__right">
+      <a href="Login.html" aria-label="User Account">
+        <img
+          src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png"
+          alt=""
+          class="navbar__userIcon"
+        />
+      </a>
+    </div>
+  </header>
+
+  <!-- =======================
+       MAIN CONTENT
+  ======================== -->
+  <main>
+    <!-- =======================
+         PORTFOLIO / WEB GALLERY
+         (di file lama: section.web-gallery + .gallery-grid) :contentReference[oaicite:5]{index=5}
+    ======================== -->
+    <section class="web-gallery">
+      <div class="container">
+        <header class="section-head">
+          <h2 class="section-head__title">
+            Select from thousands of photographers across Indonesia
+          </h2>
+          <p class="section-head__subtitle">for your every occasion</p>
+        </header>
+
+        <!-- Grid Card -->
+        <div class="gallery-grid">
+          <!-- NOTE:
+               Pakai data-bg biar tidak inline style,
+               lebih gampang di-maintain -->
+          <a class="gallery-card" href="tipe_sport.html" data-bg="../img/4.jpeg">
+            <div class="gallery-card__overlay">
+              <h3>Sport Photography</h3>
+            </div>
+          </a>
+
+          <a class="gallery-card" href="tipe_fashion.html" data-bg="../img/azizah%202.jpeg">
+            <div class="gallery-card__overlay">
+              <h3>Fashion Photography</h3>
+            </div>
+          </a>
+
+          <a class="gallery-card" href="tipe_wedding.html" data-bg="../img/azizah%205.jpeg">
+            <div class="gallery-card__overlay">
+              <h3>Wedding Photography</h3>
+            </div>
+          </a>
+
+          <a class="gallery-card" href="tipe_couple.html" data-bg="../img/Arhan%20Azizah.jpeg">
+            <div class="gallery-card__overlay">
+              <h3>Couple Photography</h3>
+            </div>
+          </a>
+
+          <a class="gallery-card" href="tipe_street.html" data-bg="../img/azizah%203.jpeg">
+            <div class="gallery-card__overlay">
+              <h3>Street Photography</h3>
+            </div>
+          </a>
+
+          <a class="gallery-card" href="tipe_lifestyle.html" data-bg="../img/Azizah%20Salsha.jpeg">
+            <div class="gallery-card__overlay">
+              <h3>Lifestyle Photography</h3>
+            </div>
+          </a>
+
+          <a class="gallery-card" href="tipe_potrait.html" data-bg="../img/1.jpeg">
+            <div class="gallery-card__overlay">
+              <h3>Portrait Photography</h3>
+            </div>
+          </a>
+
+          <a class="gallery-card" href="TIPE_NATURE.HTML" data-bg="../img/3.jpeg">
+            <div class="gallery-card__overlay">
+              <h3>Nature Photography</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================
+       FOOTER (opsional)
+  ======================== -->
+  <footer class="footer">
+    <p>© 2025 FindHappiness. All rights reserved.</p>
+  </footer>
+
+  <!-- =======================
+       JS kecil: set background-image dari data-bg
+       (biar HTML bersih)
+  ======================== -->
+  <script>
+    document.querySelectorAll(".gallery-card").forEach((card) => {
+      const bg = card.getAttribute("data-bg");
+      if (bg) card.style.backgroundImage = `url('${bg}')`;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+/* =========================================================
+   FINDHAPPINESS - PORTOFOLIO PAGE STYLES
+   File: style-rapi.css
+   Catatan:
+   - CSS dibuat modular & terstruktur
+   - Fokus hanya untuk navbar + portofolio (web gallery)
+========================================================= */
+
+/* =========================
+   1) CSS RESET / BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Warna */
+  --bg: #ffffff;
+  --text: #111;
+  --muted: #666;
+  --primary: #4b0082;
+
+  /* Layout */
+  --container: 1400px;
+  --radius: 14px;
+
+  /* Spacing */
+  --pad-x: 20px;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Utility container */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+/* =========================
+   2) NAVBAR
+   Referensi konsep dari file lama: .navbar, .nav-left, .nav-center :contentReference[oaicite:8]{index=8}
+========================= */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #fff;
+  padding: 14px 60px;
+  border-bottom: 1px solid #eaeaea;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.navbar__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.navbar__brand {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.navbar__brand span {
+  color: var(--primary);
+}
+
+.navbar__menu {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.navbar__menu a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.navbar__menu a:hover,
+.navbar__menu a.is-active {
+  color: var(--primary);
+}
+
+.navbar__userIcon {
+  width: 30px;
+  cursor: pointer;
+}
+
+/* =========================
+   3) SECTION HEADER
+========================= */
+.section-head {
+  text-align: center;
+  padding: 20px 0 40px;
+}
+
+.section-head__title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.section-head__subtitle {
+  font-size: 18px;
+  color: var(--muted);
+}
+
+/* =========================
+   4) WEB GALLERY (PORTOFOLIO)
+   Referensi dari file lama: .web-gallery + .gallery-grid :contentReference[oaicite:9]{index=9}
+========================= */
+.web-gallery {
+  padding: 80px 0;
+  background: #fff;
+}
+
+/* GRID layout */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* CARD (pengganti .gallery-item) */
+.gallery-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+
+  border-radius: var(--radius);
+  overflow: hidden;
+
+  /* kunci ukuran supaya SEMUA sama */
+  height: 350px;
+
+  /* background dari data-bg */
+  background-size: cover;
+  background-position: center;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Overlay title */
+.gallery-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+
+  padding: 25px;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.8) 0%,
+    rgba(0,0,0,0.4) 50%,
+    transparent 100%
+  );
+}
+
+.gallery-card__overlay h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+/* =========================
+   5) FOOTER
+========================= */
+.footer {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+}
+
+/* =========================
+   6) RESPONSIVE
+========================= */
+@media (max-width: 1200px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  .section-head__title {
+    font-size: 28px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .gallery-card {
+    height: 250px;
+  }
+
+  .gallery-card__overlay h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-card {
+    height: 280px;
+  }
+}

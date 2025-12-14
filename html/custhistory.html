@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pesanan - Customer</title>
+    <link rel="stylesheet" href="../css/style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+   <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-left">
+      <img src="../img/logo.png" alt="Logo" class="logo">
+      <h1>Find <span>Hapiness</span></h1>
+    </div>
+
+    <nav class="nav-center">
+      <ul>
+        <li><a href="Homepage.html" >Home</a></li>
+        <li><a href="portofolio.html">Portofolio</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+        <li><a href="joinus.html">Join Us</a></li>
+        <li><a href="custhistory.html"class="active" >History  </a></li>
+      </ul>
+    </nav>
+
+<div class="nav-right">
+      <div class="dropdown">
+        <a href="#" class="profile-toggle">
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="User Icon" class="user-icon">
+        </a>
+        <div class="dropdown-content">
+          <a href="Login.html" class="dropdown-item">
+            <img src="https://img.icons8.com/ios-glyphs/20/000000/exit.png" alt="Logout Icon"> Log Out
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+    
+    <section class="history-section">
+        <h1>Riwayat Pesanan Saya</h1>
+        <p class="subtitle-history">Lihat status pesanan Anda, lakukan pembayaran, dan beri ulasan.</p>
+
+        <div class="history-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>BOOKING ID</th> 
+                        <th>FOTOGRAFER</th> 
+                        <th>TANGGAL SESI</th>
+                        <th>STATUS</th>
+                        <th>AKSI</th>
+                    </tr>
+                </thead>
+                <tbody id="customer-history-body">
+                    
+                    <tr 
+                        id="booking-C10001"
+                        data-fotografer="Ahmad Sutrisno" 
+                        data-date="2025-12-05" 
+                        data-status="new"
+                        data-price="Rp 500.000" 
+                    >
+                        <td class="booking-id">#C10001</td>
+                        <td>Ahmad Sutrisno</td> 
+                        <td>2025-12-05</td>
+                        <td><span class="status-badge pending">Menunggu Konfirmasi</span></td>
+                        <td>
+                            <button class="detail-btn" onclick="openDetailModal('#C10001')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr 
+                        id="booking-C10002"
+                        data-fotografer="Budi Cahyono" 
+                        data-date="2025-12-10" 
+                        data-status="accepted"
+                        data-price="Rp 800.000" 
+                    >
+                        <td class="booking-id">#C10002</td>
+                        <td>Budi Cahyono</td> 
+                        <td>2025-12-10</td>
+                        <td><span class="status-badge confirmed">Menunggu Pembayaran</span></td>
+                        <td>
+                            <button class="complete-btn" style="background-color: #f7a01c;" onclick="payBooking('#C10002')">
+                                <i class="fas fa-wallet"></i> Bayar Sekarang
+                            </button>
+                            <button class="detail-btn" onclick="openDetailModal('#C10002')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                        </td>
+                    </tr>
+                    
+                    <tr 
+                        id="booking-C10003"
+                        data-fotografer="Citra Dewi" 
+                        data-date="2025-12-15" 
+                        data-status="paid"
+                        data-price="Rp 650.000" 
+                    >
+                        <td class="booking-id">#C10003</td>
+                        <td>Citra Dewi</td> 
+                        <td>2025-12-15</td>
+                        <td><span class="status-badge completed">Siap Sesi (Dibayar)</span></td>
+                        <td>
+                            <button class="complete-btn" onclick="completeSession('#C10003')">
+                                <i class="fas fa-calendar-check"></i> Selesaikan Pesanan
+                            </button>
+                            <button class="detail-btn" onclick="openDetailModal('#C10003')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr 
+                        id="booking-C10004"
+                        data-fotografer="Citra Dewi" 
+                        data-date="2025-12-18" 
+                        data-status="completed"
+                        data-price="Rp 400.000" 
+                    >
+                        <td class="booking-id">#C10004</td>
+                        <td>Citra Dewi</td> 
+                        <td>2025-12-18</td>
+                        <td><span class="status-badge confirmed" style="background-color: #e6e6e6; color: #555;">Sesi Selesai</span></td>
+                        <td>
+                            <button class="rating-btn" onclick="openRatingModal('#C10004')">
+                                <i class="fas fa-star"></i> Beri Rating
+                            </button>
+                            <button class="detail-btn" onclick="openDetailModal('#C10004')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                        </td>
+                    </tr>
+                    
+                    <tr 
+                        id="booking-C10005"
+                        data-fotografer="Dedi Santoso" 
+                        data-date="2025-12-20" 
+                        data-status="rejected"
+                        data-price="Rp 500.000" 
+                    >
+                        <td class="booking-id">#C10005</td>
+                        <td>Dedi Santoso</td> 
+                        <td>2025-12-20</td>
+                        <td><span class="status-badge cancelled">Ditolak Fotografer</span></td>
+                        <td>
+                            <button class="detail-btn" onclick="openDetailModal('#C10005')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeDetailModal()">&times;</span>
+            
+            <h3>Detail Pesanan <span id="detailBookingId" style="color: #4b0082; font-weight: bold;">#CXXXXX</span></h3>
+            
+            <ul id="detailList">
+                <li>Fotografer: <span id="detailFotografer"></span></li>
+                <li>Tanggal Sesi: <span id="detailDate"></span></li>
+                <li>Waktu Sesi: <span id="detailTime">TBD</span></li>
+                <li>Lokasi: <span id="detailLocation">TBD</span></li>
+                <li style="font-weight: bold; color: #6A0DAD;">Harga Total: <span id="detailPrice"></span></li>
+            </ul>
+
+            <button class="submit-rating-btn" onclick="closeDetailModal()">Tutup</button>
+        </div>
+    </div>
+    
+    <div id="ratingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeRatingModal()">&times;</span>
+            
+            <h3>Beri Rating untuk <span id="ratingFotografer" style="color: #4b0082; font-weight: bold;"></span></h3>
+            <p style="margin-top: -10px; margin-bottom: 20px;">Pesanan: <span id="ratingBookingId">#CXXXXX</span></p>
+            
+            <div class="stars" id="starsContainer">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            
+            <textarea id="ratingReview" placeholder="Tambahkan ulasan Anda..." rows="4"></textarea>
+
+            <button class="submit-rating-btn" onclick="submitRating()">Kirim Ulasan</button>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2025 Find Hapiness. All Rights Reserved.</p>
+    </footer>
+
+<script src="../JS/custhistory.js"></script> 
+<script src="../JS/dropdown.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | FindHappiness</title>
+    <link rel="stylesheet" href="../css/joinusform.css">
+    <link rel="icon" type="image/png" href="../img/logo.png">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-left">
+            <img src="../img/logo.png" alt="Logo" class="logo">
+            <h1>Find <span>Hapiness</span></h1>
+        </div>
+
+        <nav class="nav-center">
+            <ul>
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="portofolio.html">Portofolio</a></li>
+                <li><a href="Pricing.html">Pricing</a></li>
+                <li><a href="joinus.html" class="active">Join Us</a></li>
+                <li><a href="custhistory.html">History</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-right">
+            <div class="dropdown">
+                <a href="#" class="profile-toggle">
+                    <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="User Icon" class="user-icon">
+                </a>
+                <div class="dropdown-content">
+                    <a href="Login.html" class="dropdown-item">
+                        <img src="https://img.icons8.com/ios-glyphs/20/000000/exit.png" alt="Logout Icon"> Log Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="registration">
+        <div class="form-container">
+            <h2>Ayo Bergabung!</h2>
+
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="nama1">Nama Lengkap</label>
+                    <input type="text" id="nama1" name="nama" placeholder="Ketik nama lengkap" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama2">Alamat Email</label>
+                    <input type="email" id="nama2" name="email" placeholder="Ketik alamat Gmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama3">Alamat Domisili</label>
+                    <input type="text" id="nama3" name="alamat" placeholder="Ketik alamat tinggal saat ini" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama4">NIK</label>
+                    <input type="number" id="nama4" name="nik" placeholder="Ketik Nomor Induk Kependudukan" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cameraType">Jenis Kamera (Contoh: Canon EOS R6)</label>
+                    <input type="text" id="cameraType" name="jenis_kamera" placeholder="Merk dan model kamera utama Anda" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Kategori Fotografi (Pilih minimal 1)</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="kategori[]" value="Sport"> Sport Fotografi</label>
+                        <label><input type="checkbox" name="kategori[]" value="Fashion"> Fashion Fotografi</label>
+                        <label><input type="checkbox" name="kategori[]" value="Wedding"> Wedding Fotografi</label>
+                        <label><input type="checkbox" name="kategori[]" value="Couple"> Couple Fotografi</label>
+                        <label><input type="checkbox" name="kategori[]" value="Street"> Street Fotografi</label>
+                        <label><input type="checkbox" name="kategori[]" value="Lifestyle"> Lifestyle Fotografi</label>
+                        <label><input type="checkbox" name="kategori[]" value="Portrait"> Portrait Fotografi</label>
+                        <label><input type="checkbox" name="kategori[]" value="Nature"> Nature Fotografi</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama5">Motivasi</label>
+                    <textarea id="nama5" name="motivasi" placeholder="Tulis sebuah argumen motivasi pendaftaran..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Daftar</button>
+            </form>
+        </div> 
+    </section> 
+
+    <div id="successModal" class="modal-register">
+        <div class="modal-content-register">
+            <img src="https://img.icons8.com/color/60/000000/ok--v1.png" alt="Checkmark Success" style="margin-bottom: 20px;">
+            <h3>🎉 Pendaftaran Berhasil!</h3>
+            <p>Aplikasi Anda telah berhasil kami terima. Kami akan menghubungi Anda dalam 3-5 hari kerja untuk langkah selanjutnya.</p>
+            
+            <button id="goToHomeBtn" class="btn-primary" style="margin-top: 20px;">
+                Kembali ke Beranda
+            </button>
+        </div>
+    </div> 
+
+    <footer>
+        <p>© 2025 FindHappiness. All rights reserved.</p>
+    </footer>
+
+<script src="../JS/joinusform.js"></script>
+<script src="../JS/dropdown.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | FindHappiness</title>
+  <link rel="stylesheet" href="../css/formBooking.css">
+</head>
+<body>
+
+<body>
+    <div class="container">
+        <!-- Header ada DI DALAM container -->
+        <div class="header">
+            <h1>📸 FindHappiness Appointment</h1>
+            <p>Fill out the form below to book your session with our photographer!</p>
+        </div>
+
+        <!-- Form juga DI DALAM container yang sama -->
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="name">Nama Lengkap *</label>
+                <input type="text" id="name" name="name" required placeholder="Masukkan nama lengkap Anda">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">No. Telepon *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="08xxxxxxxxxx">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="service">Jenis Layanan *</label>
+                <select id="service" name="service" required>
+                    <option value="">Pilih jenis layanan</option>
+                    <option value="wedding">Wedding / Pernikahan</option>
+                    <option value="prewedding">Prewedding</option>
+                    <option value="portrait">Portrait / Potret</option>
+                    <option value="event">Event / Acara</option>
+                    <option value="product">Product / Produk</option>
+                    <option value="graduation">Graduation / Wisuda</option>
+                    <option value="other">Lainnya</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">Tanggal Acara *</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Waktu Mulai *</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Lokasi Acara *</label>
+                <input type="text" id="location" name="location" required placeholder="Alamat lengkap lokasi">
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Catatan Tambahan</label>
+                <textarea id="notes" name="notes" placeholder="Ceritakan konsep atau detail khusus yang Anda inginkan..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Kirim Booking</button>
+
+            <div class="success-message" id="successMessage">
+                ✓ Booking Anda berhasil dikirim! Kami akan segera menghubungi Anda.
+            </div>
+        </form>
+    </div>
+
+    <div id="successModal" class="modal-booking">
+
+    <div class="modal-content-booking">
+        <img src="https://img.icons8.com/color/60/000000/ok--v1.png" alt="Checkmark Success" style="margin-bottom: 20px;">
+        <h3>🥳 Pesanan Berhasil Terkirim!</h3>
+        <p>Pesanan Anda telah berhasil dikirim ke fotografer.</p>
+        <p style="margin-top: 10px;">Mohon tunggu konfirmasi dari fotografer. Anda dapat mengecek status di halaman riwayat pesanan.</p>
+        
+        <button id="goToHomeBtn" class="btn-primary" style="margin-top: 20px;">
+            Kembali ke Beranda
+        </button>
+        
+        <a href="custhistory.html" class="btn-secondary" style="margin-top: 10px; display: block;">
+            Lihat Riwayat Pesanan
+        </a>
+    </div>
+</div>
+
+    <script src="../JS/formbooking.js"></script>
+</body>

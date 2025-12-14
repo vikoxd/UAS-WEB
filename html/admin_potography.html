@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Photographers</title>
+
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+<div class="dashboard-container">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-container">
+        <img src="../img/logo.png" alt="Logo" class="logo-icon">
+        <span class="logo-text">Find Happiness</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="admin.html" class="nav-item">
+        <i class="fas fa-home"></i><span>Dashboard</span>
+      </a>
+      <a href="admin_booking.html" class="nav-item">
+        <i class="fas fa-calendar"></i><span>Booking</span>
+      </a>
+      <a href="admin_photography.html" class="nav-item active">
+        <i class="fas fa-camera"></i><span>Photography</span>
+      </a>
+      <a href="admin_reports.html" class="nav-item">
+        <i class="fas fa-file-alt"></i><span>Reports</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <div class="main-content">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search photographers...">
+      </div>
+
+      <div class="header-actions">
+        <div class="user-profile">
+          <div class="user-avatar">A</div>
+          <div class="user-info">
+            <h4>Loading...</h4>
+            <p>Loading...</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== CONTENT ===== -->
+    <main class="content-area">
+
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <div class="page-title">
+          <h2>Photographers Management</h2>
+          <p>Manage your photography team and their profiles</p>
+        </div>
+      </div>
+
+      <!-- ================= MINI STATS ================= -->
+      <div class="mini-stats">
+
+        <div class="mini-stat-card">
+          <div class="stat-icon purple">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-content">
+            <h4>Total Photographers</h4>
+            <div class="mini-stat-value" id="stat-total">0</div>
+          </div>
+        </div>
+
+        <div class="mini-stat-card">
+          <div class="stat-icon blue">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <div class="stat-content">
+            <h4>Active This Month</h4>
+            <div class="mini-stat-value" id="stat-active-month">0</div>
+          </div>
+        </div>
+
+        <div class="mini-stat-card">
+          <div class="stat-icon green">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="stat-content">
+            <h4>Available Today</h4>
+            <div class="mini-stat-value" id="stat-available-today">0</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= FILTER + TABLE ================= -->
+      <div class="filter-section">
+
+        <!-- FILTER TABS -->
+        <div class="filter-tabs">
+          <button class="filter-tab active"
+                  data-status="all"
+                  onclick="filterPhotographers('all')">
+            All Photographers
+          </button>
+
+          <button class="filter-tab"
+                  data-status="active-month"
+                  onclick="filterPhotographers('active-month')">
+            Active This Month
+          </button>
+
+          <button class="filter-tab"
+                  data-status="available-today"
+                  onclick="filterPhotographers('available-today')">
+            Available Today
+          </button>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-section">
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID Photographer</th>
+                  <th>Name</th>
+                  <th>Domisili</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+
+              <tbody id="photographersTable">
+                <tr>
+                  <td colspan="4" style="text-align:center">
+                    Loading...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- PAGINATION (UI ONLY) -->
+          <div class="pagination">
+            <div class="pagination-info">Showing photographers</div>
+            <div class="pagination-buttons">
+              <button class="pagination-btn" disabled>
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="pagination-btn active">1</button>
+              <button class="pagination-btn">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ================= SCRIPT ================= -->
+<script src="../JS/adminPhotographer.js"></script>
+
+</body>
+</html>

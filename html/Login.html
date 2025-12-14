@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | FindHappiness</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="left-box">
+      <h2>Don't have an account?</h2>
+      <p>Sign up now to enjoy all our premium services</p>
+      <a href="Signup.html"><button>SIGN UP</button></a>
+    </div>
+
+    <div class="right-box">
+      <form action="../php/login.php" method="POST" id="login-form">
+          <h2>LOGIN</h2>
+          <input type="email" name="email" placeholder="Email address" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <a href="#" class="forgot">Forgot password?</a>
+          <button type="submit">LOGIN</button>
+          <p>Don't have an account? <a href="Signup.html">Sign Up</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

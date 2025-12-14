@@ -1,0 +1,124 @@
+/*Login Page*/
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('../img/bg.jpg') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  background: #4b0082 ;
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  overflow: hidden;
+  width: 850px;
+  max-width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Left Side */
+.left-box {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 40px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-box h2 {
+  font-size: 26px;
+}
+
+.left-box p {
+  margin: 15px 0;
+  line-height: 1.5;
+}
+
+.left-box button {
+  width: 140px;
+  padding: 10px;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.left-box button:hover {
+  background: #fff;
+  color: #333;
+}
+
+/* Right Side */
+.right-box {
+  background: #fff;
+  width: 50%;
+  padding: 40px;
+  position: relative;
+}
+
+/* Selector .right-box diganti menjadi .form (ketika tag form login kembali digunakan) */
+
+.right-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-box h2 {
+  color: #4b0082;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.right-box input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.right-box a {
+  color: #999;
+  font-size: 13px;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.right-box button {
+  background: #4b0082;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.right-box button:hover {
+  background: #330058;
+}
+
+.right-box p {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.right-box p a {
+  color: #4b0082;
+  text-decoration: none;
+}
+
+.right-box p a:hover {
+  text-decoration: underline;
+}

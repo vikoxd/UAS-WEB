@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FindHappiness</title>
+  <link rel="stylesheet" href="../css/style1.css">
+</head>
+<body>
+
+   <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-left">
+      <img src="../img/logo.png" alt="Logo" class="logo">
+      <h1>Find <span>Hapiness</span></h1>
+    </div>
+
+    <nav class="nav-center">
+      <ul>
+        <li><a href="Homepage.html" class="active">Home</a></li>
+        <li><a href="portofolio.html">Portofolio</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+        <li><a href="joinus.html">Join Us</a></li>
+        <li><a href="custhistory.html">History  </a></li>
+      </ul>
+    </nav>
+
+<div class="nav-right">
+      <div class="dropdown">
+        <a href="#" class="profile-toggle">
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="User Icon" class="user-icon">
+        </a>
+        <div class="dropdown-content">
+          <a href="Login.html" class="dropdown-item">
+            <img src="https://img.icons8.com/ios-glyphs/20/000000/exit.png" alt="Logout Icon"> Log Out
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Hero Slider -->
+  <section class="hero">
+     <div class="slider"> 
+        <div class="slide active" style="background-image: url('../img/Foto\ nikah.jpg');"></div>
+         <div class="slide" style="background-image: url('../img/foto\ honeymoon.jpg');"></div> 
+         <div class="slide" style="background-image: url('../img/azizah\ 1.jpeg');"></div>
+         <div class="slide" style="background-image: url('../img/foto\ futsal.jpg');"></div>  
+        </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Looking for photographer hire?</h1>
+      <a href="fotografer.html" class="btn">📅 Book Now from IDR 100.000</a>
+    </div>
+  </section>
+   <!-- Tombol panah -->
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</section>
+
+  <script> 
+    let slides = document.querySelectorAll('.slide'); 
+    let index = 0; 
+  
+    function showSlide(i) { 
+      slides.forEach((slide, n) => { slide.classList.remove('active'); 
+      if (n === i) slide.classList.add('active'); }); 
+    }  
+    function nextSlide() { 
+      index = (index + 1) % slides.length; 
+      showSlide(index); 
+    }
+
+    function prevSlide() { 
+      index = (index - 1 + slides.length) % slides.length; 
+      showSlide(index); 
+    }
+    
+    document.querySelector('.next').addEventListener('click', nextSlide); 
+    document.querySelector('.prev').addEventListener('click', prevSlide); 
+</script>
+
+<!--Testimoni-->
+<section class="ulasan">
+  <h3>Testimonials</h3>
+  <h2>What’s our customer says?</h2>
+
+  <div class="testimonial-container">
+    <div class="kartu-ulasan">
+      <p>
+        “Aku sangat senang menggunakan jasa fotografer disini, hasil foto yang diberikan 
+        sangat memuaskan.”
+      </p>
+      <div class="pengguna-ulasan">
+        <img src="../img/user1.jpg" alt="User 1">
+        <div>
+          <h4>Rini</h4>
+          <p>Student</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="kartu-ulasan">
+      <p>
+        “Pelayanan cepat, fotografer ramah, dan hasil editingnya halus banget.
+        Recommended banget buat kebutuhan pernikahan kita.”
+      </p>
+      <div class="pengguna-ulasan">
+        <img src="../img/user2.jpg" alt="User 2">
+        <div>
+          <h4>Putri</h4>
+          <p>Wedding Client</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="kartu-ulasan">
+      <p>
+        “Saya sudah memakai jasa fotografer ini selama 10 tahun, dan mereka membantuku hingga
+        mendapatkan gold play button.”
+      </p>
+      
+      <div class="pengguna-ulasan">
+        <img src="../img/user3.jpg" alt="User 3">
+        <div>
+          <h4>Yanto</h4>
+          <p>Content Creator</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <footer>
+    <p>© 2025 FindHappiness. All rights reserved.</p>
+  </footer>
+
+  <script src="../JS/dropdown.js"></script>
+
+</body>
+</html>
+
