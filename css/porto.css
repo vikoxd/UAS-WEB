@@ -98,10 +98,62 @@ body {
   color: var(--primary);
 }
 
-.navbar__userIcon {
+.nav-right .user-icon {
   width: 30px;
   cursor: pointer;
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-toggle {
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none; /* Sembunyikan secara default */
+  position: absolute;
+  top: 100%; 
+  right: 0;
+  background-color: #333; 
+  min-width: 150px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 20; 
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px; 
+}
+
+.dropdown-content.show {
+  display: block; /* Tampilkan saat class 'show' ditambahkan oleh JS */
+}
+
+.dropdown-item {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #4b0082; /* Warna ungu FindHappiness saat hover */
+}
+
+/* Mengubah warna ikon di dalam dropdown menjadi putih */
+.dropdown-item img {
+  width: 16px;
+  height: 16px;
+  filter: invert(100%); 
+}
+
+
 
 /* =========================
    3) SECTION HEADER
