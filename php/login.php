@@ -25,11 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>alert('Welcome Admin!'); window.location='../html/admin.html';</script>";
             exit;
         } elseif ($role == "Fotografer") {
-            echo "<script>alert('Welcome!'); window.location='../html/Homepage.html';</script>";
+            echo "<script>alert('Welcome Fotografer!'); window.location='../html/fotograferhistory.html';</script>";
             exit;
         } else {
             // pengguna / default
-            echo "<script>alert('COK!'); window.location='../html/Homepage.html';</script>";
+            echo "<script>alert('Welcome Cust!'); window.location='../html/Homepage.html';</script>";
             exit;
         }
         exit;
