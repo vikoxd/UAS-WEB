@@ -3,6 +3,7 @@
 // ===== API CONFIG (baru) =====
 const API_CUST_LIST = "../php/get_customer_bookings.php";
 const API_CUST_UPDATE = "../php/update_booking_status_customer.php";
+const API_SUBMIT_RATING = "../php/submit_rating.php";
 
 // ===== Helpers =====
 function getRowByBookingId(bookingIdWithHash) {
@@ -22,7 +23,7 @@ function escapeHtml(str) {
 }
 
 function normalizeDbStatusToCode(dbStatus) {
-  // DB kamu pakai: Menunggu Konfirmasi, Menunggu Pembayaran, Terbayar, Selesai, Ditolak
+  // DB: Menunggu Konfirmasi, Menunggu Pembayaran, Terbayar, Selesai, Ditolak
   const s = String(dbStatus || "").toLowerCase().trim();
 
   if (s.includes("konfirmasi")) return "new";
@@ -31,12 +32,11 @@ function normalizeDbStatusToCode(dbStatus) {
   if (s.includes("selesai")) return "completed";
   if (s.includes("tolak")) return "rejected";
 
-  // fallback: kalau ternyata DB sudah pakai kode
+  // fallback
   return dbStatus || "new";
 }
 
 function codeStatusToDb(statusCode) {
-  // untuk update ke DB
   switch (statusCode) {
     case "new":
       return "Menunggu Konfirmasi";
@@ -53,7 +53,7 @@ function codeStatusToDb(statusCode) {
   }
 }
 
-// ===== STATUS UI (fungsi lama, tapi aku rapikan biar cocok) =====
+// ===== STATUS UI =====
 function setStatusBadge(row, status) {
   const statusCell = row.querySelector("td:nth-child(4)");
   const badge = statusCell.querySelector(".status-badge");
@@ -97,7 +97,7 @@ function setStatusBadge(row, status) {
 }
 
 function renderActions(row) {
-  const status = row.dataset.status; // sudah dinormalisasi (new/accepted/paid/completed/rejected)
+  const status = row.dataset.status; // new/accepted/paid/completed/rejected
   const bookingId = row.querySelector(".booking-id").textContent.trim();
   const aksiCell = row.querySelector("td:nth-child(5)");
 
@@ -109,7 +109,7 @@ function renderActions(row) {
 
   let extra = "";
 
-  // ✅ FIX: tombol bayar hanya muncul saat accepted (menunggu pembayaran)
+  // Bayar hanya saat accepted
   if (status === "accepted") {
     extra = `
       <button class="complete-btn" style="background-color: #f7a01c;" onclick="payBooking('${bookingId}')">
@@ -123,11 +123,20 @@ function renderActions(row) {
       </button>
     `;
   } else if (status === "completed") {
-    extra = `
-      <button class="rating-btn" onclick="openRatingModal('${bookingId}')">
-        <i class="fas fa-star"></i> Beri Rating
-      </button>
-    `;
+    // jika sudah rating, tombol disabled
+    if (row.dataset.rated === "true") {
+      extra = `
+        <button class="rating-btn" disabled style="opacity:.6; cursor:not-allowed;">
+          <i class="fas fa-star"></i> Sudah Dirating
+        </button>
+      `;
+    } else {
+      extra = `
+        <button class="rating-btn" onclick="openRatingModal('${bookingId}')">
+          <i class="fas fa-star"></i> Beri Rating
+        </button>
+      `;
+    }
   }
 
   aksiCell.innerHTML = `${extra}${detailBtn}`;
@@ -152,7 +161,7 @@ window.closeDetailModal = function () {
   document.getElementById("detailModal").style.display = "none";
 };
 
-// ===== Rating Modal + Stars (asli, tidak diubah) =====
+// ===== Rating Modal + Stars (tetap) =====
 let currentRating = 0;
 let currentRatingBookingId = "";
 let currentRatingRow = null;
@@ -194,6 +203,12 @@ window.openRatingModal = function (bookingIdWithHash) {
   const row = getRowByBookingId(bookingIdWithHash);
   if (!row) return;
 
+  // jika sudah rating, jangan buka modal
+  if (row.dataset.rated === "true") {
+    alert("Kamu sudah memberikan rating untuk booking ini.");
+    return;
+  }
+
   currentRating = 0;
   currentRatingBookingId = bookingIdWithHash;
   currentRatingRow = row;
@@ -210,7 +225,8 @@ window.closeRatingModal = function () {
   document.getElementById("ratingModal").style.display = "none";
 };
 
-window.submitRating = function () {
+// ====== SUBMIT RATING (DB via testimoni -> update fotografer) ======
+window.submitRating = async function () {
   if (!currentRatingRow) return;
 
   const review = document.getElementById("ratingReview").value.trim();
@@ -220,27 +236,48 @@ window.submitRating = function () {
     return;
   }
 
-  const id = currentRatingBookingId.replace("#", "");
-  const payload = {
-    bookingId: currentRatingBookingId,
-    fotografer: currentRatingRow.dataset.fotografer || "",
-    rating: currentRating,
-    review,
-    createdAt: new Date().toISOString(),
-  };
-  localStorage.setItem(`rating_${id}`, JSON.stringify(payload));
+  const bookingIdDb = currentRatingRow.dataset.bookingId; // angka id bookings
 
-  alert("Terima kasih! Rating & ulasan kamu sudah tersimpan.");
+  try {
+    const fd = new FormData();
+    fd.append("booking_id", bookingIdDb);
+    fd.append("rating", currentRating);
+    fd.append("review", review);
 
-  currentRatingRow.dataset.rated = "true";
-  renderActions(currentRatingRow);
+    const res = await fetch(API_SUBMIT_RATING, {
+      method: "POST",
+      body: fd,
+      credentials: "include",
+    });
 
-  closeRatingModal();
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Gagal mengirim rating.");
+
+    // === flow lama: tetap simpan localStorage (tidak dihilangkan) ===
+    const id = currentRatingBookingId.replace("#", "");
+    const payload = {
+      bookingId: currentRatingBookingId,
+      bookingIdDb,
+      fotografer: currentRatingRow.dataset.fotografer || "",
+      rating: currentRating,
+      review,
+      createdAt: new Date().toISOString(),
+    };
+    localStorage.setItem(`rating_${id}`, JSON.stringify(payload));
+
+    alert("Terima kasih! Rating & ulasan kamu berhasil dikirim ✅");
+
+    currentRatingRow.dataset.rated = "true";
+    renderActions(currentRatingRow);
+
+    closeRatingModal();
+  } catch (err) {
+    alert(err.message);
+  }
 };
 
-// ====== (BARU) UPDATE STATUS KE DB ======
+// ====== UPDATE STATUS KE DB ======
 async function updateCustomerBookingStatus(row, newStatusCode) {
-  // butuh booking_id dari DB, disimpan di dataset
   const bookingIdDb = row.dataset.bookingId;
   if (!bookingIdDb) throw new Error("booking_id DB tidak ditemukan.");
 
@@ -265,7 +302,6 @@ window.payBooking = async function (bookingIdWithHash) {
   if (!row) return;
 
   try {
-    // ✅ Bayar = update DB → "Terbayar"
     await updateCustomerBookingStatus(row, "paid");
 
     row.dataset.status = "paid";
@@ -283,8 +319,6 @@ window.completeSession = async function (bookingIdWithHash) {
   if (!row) return;
 
   try {
-    // ✅ selesai (customer) = set completed (opsional; biasanya fotografer yg menyelesaikan,
-    // tapi kalau kamu mau customer yg klik, ini aman)
     await updateCustomerBookingStatus(row, "completed");
 
     row.dataset.status = "completed";
@@ -306,24 +340,27 @@ window.addEventListener("click", (e) => {
   if (e.target === ratingModal) closeRatingModal();
 });
 
-// ===== (BARU) LOAD DATA DINAMIS =====
+// ===== LOAD DATA DINAMIS =====
 function buildCustomerRow(item) {
   const codeRaw = String(item.booking_code || "").replace("#", "");
-  const code = codeRaw || `B${item.booking_id}`; // fallback kalau booking_code kosong
+  const code = codeRaw || `B${item.booking_id}`;
   const bookingText = code.startsWith("#") ? code : `#${code}`;
 
   const statusCode = normalizeDbStatusToCode(item.booking_status);
+  const rated = (String(item.has_rating || "0") === "1") ? "true" : "false";
 
   return `
     <tr 
       id="booking-${escapeHtml(code)}"
       data-booking-id="${escapeHtml(item.booking_id)}"
+      data-id-fotografer="${escapeHtml(item.id_fotografer)}"
       data-fotografer="${escapeHtml(item.photographer_name || "-")}"
       data-date="${escapeHtml(item.booking_date || "-")}"
       data-time="${escapeHtml(item.booking_time || "")}"
       data-location="${escapeHtml(item.location || "")}"
       data-status="${escapeHtml(statusCode)}"
       data-price="${escapeHtml(item.amount ? ("Rp " + Number(item.amount).toLocaleString("id-ID")) : "-")}"
+      data-rated="${escapeHtml(rated)}"
     >
       <td class="booking-id">${escapeHtml(bookingText)}</td>
       <td>${escapeHtml(item.photographer_name || "-")}</td>
@@ -353,13 +390,15 @@ async function loadCustomerBookings() {
 
     document.querySelectorAll("#customer-history-body tr").forEach((row) => {
       setStatusBadge(row, row.dataset.status);
-      renderActions(row);
 
+      // fallback localStorage (flow lama) jika DB belum punya flag
       const id = row.id.replace("booking-", "");
       const saved = localStorage.getItem(`rating_${id}`);
       if (saved && row.dataset.status === "completed") {
         row.dataset.rated = "true";
       }
+
+      renderActions(row);
     });
   } catch (err) {
     tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:red">${escapeHtml(err.message)}</td></tr>`;
@@ -369,5 +408,5 @@ async function loadCustomerBookings() {
 // ===== Init =====
 document.addEventListener("DOMContentLoaded", () => {
   initStars();
-  loadCustomerBookings(); // ✅ dinamis dari DB
+  loadCustomerBookings();
 });
